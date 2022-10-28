@@ -20,13 +20,13 @@ func main() {
 }
 
 var (
-	current string
-	srcPath string
+	packagePath string
+	srcPath     string
 )
 
 func init() {
 	log.SetFlags(log.Lshortfile)
-	flag.StringVar(&current, "c", ".", "go package path")
+	flag.StringVar(&packagePath, "p", ".", "go package path")
 	flag.StringVar(&srcPath, "s", "$GOPATH/src", "go source Path")
 }
 
@@ -37,7 +37,7 @@ func run() error {
 		return err
 	}
 
-	ac, err := filepath.Abs(strings.Replace(os.ExpandEnv(current), "~", u.HomeDir, 1))
+	ac, err := filepath.Abs(strings.Replace(os.ExpandEnv(packagePath), "~", u.HomeDir, 1))
 	if err != nil {
 		return err
 	}
